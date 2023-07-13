@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery Calculator</title>
+        <link rel="stylesheet" href="assets/library/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+
+        <style>
+            .counting-container {
+                font-size: 24px;
+                font-weight: bold;
+                text-align: center;
+                animation: counting 3s ease-in-out;
+            }
+
+            @keyframes counting {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.2);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+
+
+
+        <div>
+            <label for="input1">Input 1: </label>
+            <input type="number" id="input1" step="1">
+        </div>
+        <div>
+            <label for="input2">Input 2: </label>
+            <input type="number" id="input2" step="1">
+        </div>
+        <div>
+            <button onclick="calculateCount()">Calculate Count</button>
+        </div>
+        <div class="counting-container" id="countingDisplay"></div>
+
+        <script>
+            function calculateCount() {
+                var input1 = parseFloat(document.getElementById('input1').value);
+                var input2 = parseFloat(document.getElementById('input2').value);
+                var sum = input1 + input2;
+
+                var countingDisplay = document.getElementById('countingDisplay');
+                countingDisplay.innerText = "0";
+
+                var interval = setInterval(function () {
+                    if (parseFloat(countingDisplay.innerText) < sum) {
+                        countingDisplay.innerText = (parseFloat(countingDisplay.innerText) + 1.55).toFixed(2);
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 50);
+            }
+        </script>
+
+
+
+
+
+
+        <script src="assets/js/vendor/jquery-3.6.1.min.js"></script>
+        <script src="assets/library/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
+
+</html>
